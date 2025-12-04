@@ -1,0 +1,9 @@
+pynvim
+jupyter-client
+jupyter-core
+pyyaml
+jsonschema
+matplotlib
+numpy
+pandas
+ipykernel
