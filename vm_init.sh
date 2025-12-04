@@ -15,19 +15,36 @@ sudo apt install -y \
     wget \
     unzip \
     ca-certificates \
-    fontconfig
+    fontconfig \
+    ninja-build \
+    gettext \
+    libtool \
+    libtool-bin \
+    autoconf \
+    automake \
+    cmake \
+    g++ \
+    pkg-config
 
-echo "Downloading and installing Neovim 0.11+..."
+echo "Cloning Neovim repository..."
 cd /tmp
-wget -q https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+git clone https://github.com/neovim/neovim.git
+cd neovim
+
+echo "Checking out the latest stable release..."
+git checkout stable
+
+echo "Building Neovim from source..."
+make CMAKE_BUILD_TYPE=Release
 if [[ $? -ne 0 ]]; then
-    echo "Error: Failed to download Neovim AppImage."
+    echo "Error: Failed to build Neovim from source."
     exit 1
 fi
-chmod u+x nvim.appimage
-sudo mv nvim.appimage /usr/local/bin/nvim
+
+echo "Installing Neovim..."
+sudo make install
 if [[ $? -ne 0 ]]; then
-    echo "Error: Failed to move Neovim AppImage to /usr/local/bin."
+    echo "Error: Failed to install Neovim."
     exit 1
 fi
 
@@ -49,4 +66,3 @@ echo "Updating font cache..."
 fc-cache -fv || { echo "Error: Failed to update font cache."; exit 1; }
 
 echo "Setup complete! Neovim and Nerd Fonts installed successfully."
-
