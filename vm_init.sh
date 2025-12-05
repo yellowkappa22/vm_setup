@@ -23,7 +23,8 @@ sudo apt install -y \
     automake \
     cmake \
     g++ \
-    pkg-config
+    pkg-config \
+    npm
 
 cd /tmp
 git clone https://github.com/neovim/neovim.git
