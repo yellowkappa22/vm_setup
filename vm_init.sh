@@ -24,7 +24,8 @@ sudo apt install -y \
     cmake \
     g++ \
     pkg-config \
-    npm
+    npm \
+    poppler-utils
 
 cd /tmp
 git clone https://github.com/neovim/neovim.git
